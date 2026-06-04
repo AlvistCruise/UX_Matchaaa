@@ -29,7 +29,6 @@ public class ItemDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
 
-        // Inisialisasi View
         ivDetailImage = findViewById(R.id.ivDetailImage);
         tvDetailName = findViewById(R.id.tvDetailName);
         tvDetailPrice = findViewById(R.id.tvDetailPrice);
@@ -41,14 +40,13 @@ public class ItemDetailActivity extends AppCompatActivity {
         btnPay = findViewById(R.id.btnPay);
 
         LinearLayout navHome = findViewById(R.id.navHome);
+        LinearLayout navBranch = findViewById(R.id.navBranch);
         LinearLayout navLogout = findViewById(R.id.navLogout);
 
-        // 1. Ambil data dari Intent
         String itemName = getIntent().getStringExtra("ITEM_NAME");
         String itemPrice = getIntent().getStringExtra("ITEM_PRICE");
         int itemImage = getIntent().getIntExtra("ITEM_IMAGE", R.mipmap.ic_launcher);
 
-        // 2. Set data ke komponen UI
         if (itemName != null) tvDetailName.setText(itemName);
         if (itemPrice != null) {
             tvDetailPrice.setText(itemPrice);
@@ -56,16 +54,12 @@ public class ItemDetailActivity extends AppCompatActivity {
         }
         ivDetailImage.setImageResource(itemImage);
 
-        // 3. Setup Dropdown (Spinner)
-        // 3. Setup Dropdown (Spinner) dengan Hint Custom
         String[] iceLevels = {"Ice level dropdown", "Normal Ice", "Less Ice", "No Ice"};
         String[] sugarLevels = {"Sugar level dropdown", "Normal Sugar", "Less Sugar", "No Sugar"};
 
-        // Adapter khusus untuk Ice Level
         ArrayAdapter<String> iceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, iceLevels) {
             @Override
             public boolean isEnabled(int position) {
-                // Matikan opsi index 0 agar berfungsi hanya sebagai hint dan tidak bisa dipilih
                 return position != 0;
             }
 
@@ -73,7 +67,6 @@ public class ItemDetailActivity extends AppCompatActivity {
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                // Warna teks saat dropdown terbuka
                 if (position == 0) {
                     tv.setTextColor(android.graphics.Color.GRAY);
                 } else {
@@ -86,7 +79,6 @@ public class ItemDetailActivity extends AppCompatActivity {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                // Warna teks saat spinner tertutup (tampilan awal)
                 if (position == 0) {
                     tv.setTextColor(android.graphics.Color.GRAY);
                 } else {
@@ -96,8 +88,6 @@ public class ItemDetailActivity extends AppCompatActivity {
             }
         };
         spinnerIce.setAdapter(iceAdapter);
-
-        // Adapter khusus untuk Sugar Level
         ArrayAdapter<String> sugarAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, sugarLevels) {
             @Override
             public boolean isEnabled(int position) {
@@ -129,13 +119,16 @@ public class ItemDetailActivity extends AppCompatActivity {
             }
         };
         spinnerSugar.setAdapter(sugarAdapter);
-
-        // 4. Logika Tombol Back
         btnBack.setOnClickListener(v -> finish());
-
-        // Logika Navigasi Bawah
         navHome.setOnClickListener(v -> {
             Intent intent = new Intent(ItemDetailActivity.this, HomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+        });
+
+        navBranch.setOnClickListener(v -> {
+            Intent intent = new Intent(ItemDetailActivity.this, BranchActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
@@ -148,17 +141,12 @@ public class ItemDetailActivity extends AppCompatActivity {
             finish();
         });
 
-        // 5. Logika Tombol Pay (Memunculkan Dialog)
         btnPay.setOnClickListener(v -> {
             String qtyStr = etQuantity.getText().toString().trim();
-
-            // Validasi simpel jika quantity kosong
             if (qtyStr.isEmpty()) {
                 etQuantity.setError("Quantity must be filled");
                 return;
             }
-
-            // Memunculkan kotak dialog konfirmasi
             new AlertDialog.Builder(ItemDetailActivity.this)
                     .setTitle("Order Confirmation")
                     .setMessage("Are you sure you want to buy " + qtyStr + " " + itemName + "?")

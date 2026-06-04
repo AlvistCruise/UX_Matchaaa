@@ -25,20 +25,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inisialisasi Komponen
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         tvRegister = findViewById(R.id.tvRegister);
 
-        // Logika Button Login
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
 
-                // Validasi
                 if (username.isEmpty()) {
                     etUsername.setError("Username must be filled");
                     return;
@@ -54,10 +51,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Jika Validasi Sukses
                 globalUsername = username; // Simpan ke global variable
 
-                // Redirect ke Home Page (Asumsi kamu punya HomeActivity)
                  Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                  startActivity(intent);
                  finish();
@@ -65,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Login Success!", Toast.LENGTH_SHORT).show();
             }
         });
-
-        // Logika Teks Register
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

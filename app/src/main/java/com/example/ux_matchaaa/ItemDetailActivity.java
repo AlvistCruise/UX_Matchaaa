@@ -2,12 +2,15 @@ package com.example.ux_matchaaa;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +26,8 @@ public class ItemDetailActivity extends AppCompatActivity {
     private Spinner spinnerIce, spinnerSugar;
     private EditText etQuantity, etNotes;
     private AppCompatButton btnPay;
+    private ImageButton btnMenuItem;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +44,13 @@ public class ItemDetailActivity extends AppCompatActivity {
         etNotes = findViewById(R.id.etNotes);
         btnPay = findViewById(R.id.btnPay);
 
-        LinearLayout navHome = findViewById(R.id.navHome);
-        LinearLayout navBranch = findViewById(R.id.navBranch);
-        LinearLayout navLogout = findViewById(R.id.navLogout);
+        btnMenuItem = findViewById(R.id.btnMenuBranch);
+        btnMenuItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMenu(v);
+            }
+        });
 
         String itemName = getIntent().getStringExtra("ITEM_NAME");
         String itemPrice = getIntent().getStringExtra("ITEM_PRICE");
@@ -120,26 +129,6 @@ public class ItemDetailActivity extends AppCompatActivity {
         };
         spinnerSugar.setAdapter(sugarAdapter);
         btnBack.setOnClickListener(v -> finish());
-        navHome.setOnClickListener(v -> {
-            Intent intent = new Intent(ItemDetailActivity.this, HomeActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
-        });
-
-        navBranch.setOnClickListener(v -> {
-            Intent intent = new Intent(ItemDetailActivity.this, BranchActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
-        });
-
-        navLogout.setOnClickListener(v -> {
-            Intent intent = new Intent(ItemDetailActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-        });
 
         btnPay.setOnClickListener(v -> {
             String qtyStr = etQuantity.getText().toString().trim();
@@ -157,5 +146,39 @@ public class ItemDetailActivity extends AppCompatActivity {
                     .setNegativeButton("Cancel", null)
                     .show();
         });
+    }
+    private void showMenu(View anchorView) {
+        PopupMenu popupMenu = new PopupMenu(ItemDetailActivity.this, anchorView);
+        popupMenu.getMenuInflater().inflate(R.menu.dropdown_menu, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.menu_home) {
+                    Intent intent = new Intent(ItemDetailActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+
+                } else if (id == R.id.menu_item) {
+
+                } else if (id == R.id.menu_branch) {
+                    Intent intent = new Intent(ItemDetailActivity.this, BranchActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id == R.id.menu_logout) {
+                    // Logout ke Login Page
+                    Intent intent = new Intent(ItemDetailActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
     }
 }

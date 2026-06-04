@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
             slideHandler.postDelayed(this, 3000);
         }
     };
-    private ImageButton btnMenuHome;
+    private ImageButton btnMenuHome, itema, cabanga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,27 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showMenu(v);
+            }
+        });
+        itema = findViewById(R.id.itema);
+
+        itema.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, ItemActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        cabanga = findViewById(R.id.cabanga);
+
+        cabanga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, BranchActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

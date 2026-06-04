@@ -1,4 +1,4 @@
-package com.example.ux_matchaaa; // Sesuaikan dengan package-mu!
+package com.example.ux_matchaaa;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Deklarasi Komponen
     private EditText etUsername, etPassword;
     private Button btnLogin;
     private TextView tvRegister;
 
-    // Variabel Global statis sederhana untuk menyimpan Username sesuai instruksi dokumen
     public static String globalUsername = "";
 
     @Override
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                globalUsername = username; // Simpan ke global variable
+                globalUsername = username;
 
                  Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                  startActivity(intent);

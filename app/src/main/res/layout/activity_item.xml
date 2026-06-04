@@ -7,7 +7,7 @@
     android:background="@color/green_start"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".ItemActivity">
+    android:fillViewport="true" tools:context=".ItemActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

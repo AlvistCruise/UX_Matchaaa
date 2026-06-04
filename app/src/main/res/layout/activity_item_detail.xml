@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/green_start"
     android:fitsSystemWindows="true"
+    android:fillViewport="true"
     tools:context=".ItemDetailActivity">
 
     <LinearLayout
@@ -24,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="Items"
+                android:text="@string/title_item_detail"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -36,6 +37,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/desc_btn_menu"
                 android:src="@android:drawable/ic_menu_sort_by_size"
                 app:tint="#FFFFFF" />
         </RelativeLayout>
@@ -52,6 +54,7 @@
                 android:layout_height="32dp"
                 android:layout_marginBottom="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/desc_btn_back"
                 android:src="@android:drawable/ic_menu_revert"
                 app:tint="#555555" />
 
@@ -66,6 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:padding="16dp"
+                    android:contentDescription="@string/desc_img_product"
                     android:scaleType="centerInside"
                     android:src="@mipmap/ic_launcher" />
 
@@ -80,17 +84,26 @@
                         android:id="@+id/tvDetailName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nama Produk"
+                        android:text="@string/dummy_nama_produk"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvDetailPrice"
+                        android:id="@+id/tvDetailDesc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Rp. 0"
+                        android:text="@string/dummy_desc_produk"
+                        android:textColor="#DDDDDD"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvDetailPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/dummy_harga_produk"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -103,6 +116,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_input_yellow"
                 android:textColor="#000000"
+                android:popupBackground="#FFFFFF"
                 android:paddingHorizontal="8dp" />
 
             <Spinner
@@ -112,6 +126,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_input_yellow"
                 android:textColor="#000000"
+                android:popupBackground="#FFFFFF"
                 android:paddingHorizontal="8dp" />
 
             <EditText
@@ -120,10 +135,11 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_input_yellow"
-                android:textColor="#000000"
-                android:hint="Quantity"
+                android:hint="@string/hint_quantity"
                 android:inputType="number"
+                android:importantForAutofill="no"
                 android:paddingHorizontal="16dp"
+                android:textColor="#000000"
                 android:textSize="14sp" />
 
             <EditText
@@ -132,8 +148,9 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_input_yellow"
+                android:importantForAutofill="no"
                 android:textColor="#000000"
-                android:hint="Notes"
+                android:hint="@string/hint_notes"
                 android:inputType="text"
                 android:paddingHorizontal="16dp"
                 android:textSize="14sp" />
@@ -145,7 +162,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/btn_login_selector"
-                android:text="Pay - Rp. 0"
+                android:text="@string/dummy_pay"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"

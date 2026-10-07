@@ -53,7 +53,7 @@ The project is built around **Object-Oriented Programming (OOP)** and **Clean Co
 
 ## UI/UX Showcase
 
-A screen-by-screen comparison of the application, straight from the live build. HTML `<img>` tags with a fixed `width='250'` are used so the previews stay compact and aligned instead of rendering at full size.
+A screen-by-screen look at the app.
 
 <table>
   <tr>

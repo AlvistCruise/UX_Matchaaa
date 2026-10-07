@@ -1,4 +1,4 @@
-package com.example.ux_matchaaa; // Sesuaikan dengan package-mu!
+package com.example.ux_matchaaa;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Deklarasi Komponen
     private EditText etUsername, etPassword;
     private Button btnLogin;
     private TextView tvRegister;
 
-    // Variabel Global statis sederhana untuk menyimpan Username sesuai instruksi dokumen
     public static String globalUsername = "";
 
     @Override
@@ -25,20 +23,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inisialisasi Komponen
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         tvRegister = findViewById(R.id.tvRegister);
 
-        // Logika Button Login
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
 
-                // Validasi
                 if (username.isEmpty()) {
                     etUsername.setError("Username must be filled");
                     return;
@@ -54,10 +49,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Jika Validasi Sukses
-                globalUsername = username; // Simpan ke global variable
+                globalUsername = username;
 
-                // Redirect ke Home Page (Asumsi kamu punya HomeActivity)
                  Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                  startActivity(intent);
                  finish();
@@ -65,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Login Success!", Toast.LENGTH_SHORT).show();
             }
         });
-
-        // Logika Teks Register
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

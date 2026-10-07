@@ -7,7 +7,7 @@
     android:background="@color/green_start"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".BranchActivity">
+    android:fillViewport="true" tools:context=".BranchActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -25,15 +25,13 @@ public class HomeActivity extends AppCompatActivity {
     private ImageButton btnPrev, btnNext;
     private ViewPager2 viewPagerCarousel;
 
-    // Array gambar untuk Carousel (Ganti namanya sesuai yang ada di folder drawable-mu)
-    private final int[] carouselImages = {
+   private final int[] carouselImages = {
             R.drawable.img_carousel_1,
             R.drawable.img_carousel_2,
             R.drawable.img_carousel_3,
             R.drawable.img_carousel_4
     };
 
-    // Handler untuk auto-slide
     private Handler slideHandler = new Handler(Looper.getMainLooper());
     private Runnable slideRunnable = new Runnable() {
         @Override
@@ -41,16 +39,15 @@ public class HomeActivity extends AppCompatActivity {
             int currentItem = viewPagerCarousel.getCurrentItem();
             int nextItem = currentItem + 1;
 
-            // Kembali ke gambar pertama jika sudah di ujung
             if (nextItem >= carouselImages.length) {
                 nextItem = 0;
             }
             viewPagerCarousel.setCurrentItem(nextItem, true); // 'true' untuk animasi smooth
 
-            // Ulangi setiap 3 detik (3000 ms)
             slideHandler.postDelayed(this, 3000);
         }
     };
+    private ImageButton btnMenuHome, itema, cabanga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,51 +55,50 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         tvGreeting = findViewById(R.id.tvGreeting);
-//        btnMenu = findViewById(R.id.btnMenu);
         btnPrev = findViewById(R.id.btnPrev);
         btnNext = findViewById(R.id.btnNext);
         viewPagerCarousel = findViewById(R.id.viewPagerCarousel);
 
-        LinearLayout navItem = findViewById(R.id.navItem);
-        LinearLayout navBranch = findViewById(R.id.navBranch);
-        LinearLayout navLogout = findViewById(R.id.navLogout);
+        btnMenuHome = findViewById(R.id.btnMenuBranch);
 
-        // Nanti buka comment ini kalau halamannya sudah dibuat
+        btnMenuHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMenu(v);
+            }
+        });
+        itema = findViewById(R.id.itema);
 
-        navItem.setOnClickListener(v -> {
-            startActivity(new Intent(HomeActivity.this, ItemActivity.class));
+        itema.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, ItemActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
 
-        navBranch.setOnClickListener(v -> {
-            startActivity(new Intent(HomeActivity.this, BranchActivity.class));
+        cabanga = findViewById(R.id.cabanga);
+
+        cabanga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, BranchActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
 
 
-        navLogout.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-        });
 
-        // 1. Tampilkan Username dari Variabel Global sesuai instruksi dokumen
-        String greetingText = "Welcome, " + MainActivity.globalUsername;
+       String greetingText = "Welcome, " + MainActivity.globalUsername;
         tvGreeting.setText(greetingText);
 
-        // 2. Setup Popup Menu (Dropdown)
-//        btnMenu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showDropdownMenu(v);
-//            }
-//        });
 
-        // 3. Setup Carousel Adapter & ViewPager
         CarouselAdapter adapter = new CarouselAdapter(carouselImages);
         viewPagerCarousel.setAdapter(adapter);
 
-        // Menambahkan efek animasi (Zoom-out ringan saat berpindah)
-        viewPagerCarousel.setPageTransformer(new ViewPager2.PageTransformer() {
+         viewPagerCarousel.setPageTransformer(new ViewPager2.PageTransformer() {
             @Override
             public void transformPage(@NonNull View page, float position) {
                 float r = 1 - Math.abs(position);
@@ -110,7 +106,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        // 4. Tombol Next dan Previous Carousel
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,8 +126,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        // Daftarkan aksi ViewPager agar timer di-reset saat di-swipe manual
-        viewPagerCarousel.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+       viewPagerCarousel.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
@@ -141,41 +135,40 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+    private void showMenu(View anchorView) {
+        PopupMenu popupMenu = new PopupMenu(HomeActivity.this, anchorView);
+        popupMenu.getMenuInflater().inflate(R.menu.dropdown_menu, popupMenu.getMenu());
 
-    // Fungsi memunculkan Dropdown Menu
-//    private void showDropdownMenu(View anchorView) {
-//        PopupMenu popupMenu = new PopupMenu(HomeActivity.this, anchorView);
-//        popupMenu.getMenuInflater().inflate(R.menu.dropdown_menu, popupMenu.getMenu());
-//
-//        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//                int id = item.getItemId();
-//                if (id == R.id.menu_home) {
-//                    Toast.makeText(HomeActivity.this, "Already on Home", Toast.LENGTH_SHORT).show();
-//                    return true;
-//                } else if (id == R.id.menu_item) {
-//                    // Intent ke ItemActivity (Nanti di-uncomment kalau sudah ada halamannya)
-//                    // startActivity(new Intent(HomeActivity.this, ItemActivity.class));
-//                    return true;
-//                } else if (id == R.id.menu_branch) {
-//                    // Intent ke BranchActivity
-//                    // startActivity(new Intent(HomeActivity.this, BranchActivity.class));
-//                    return true;
-//                } else if (id == R.id.menu_logout) {
-//                    // Kembali ke MainActivity (Login)
-//                    Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    startActivity(intent);
-//                    finish();
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
-//
-//        popupMenu.show();
-//    }
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.menu_home) {
+
+                } else if (id == R.id.menu_item) {
+                    Intent intent = new Intent(HomeActivity.this, ItemActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id == R.id.menu_branch) {
+                    Intent intent = new Intent(HomeActivity.this, BranchActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id == R.id.menu_logout) {
+                    Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
+    }
+
+
 
     @Override
     protected void onPause() {
@@ -189,9 +182,6 @@ public class HomeActivity extends AppCompatActivity {
         slideHandler.postDelayed(slideRunnable, 3000); // Lanjutkan timer
     }
 
-    // =========================================================
-    // INNER CLASS: Adapter untuk Carousel ViewPager2
-    // =========================================================
     private class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.CarouselViewHolder> {
 
         private int[] images;
@@ -203,7 +193,6 @@ public class HomeActivity extends AppCompatActivity {
         @NonNull
         @Override
         public CarouselViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            // Kita buat ImageView secara programatik agar tidak perlu file XML tambahan
             ImageView imageView = new ImageView(parent.getContext());
             imageView.setLayoutParams(new ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,

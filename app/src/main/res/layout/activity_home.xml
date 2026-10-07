@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/green_start"
     android:fitsSystemWindows="true"
-    tools:context=".HomeActivity">
+    android:fillViewport="true" tools:context=".HomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,142 +14,31 @@
         android:background="#FFFFFF"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/green_start"
-            android:orientation="horizontal"
-            android:weightSum="4">
+            android:paddingHorizontal="16dp">
 
-            <LinearLayout
-                android:id="@+id/navHome"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#2E7D32" android:gravity="center"
-                android:orientation="horizontal">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Chi!Matcha"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@android:drawable/ic_dialog_dialer"
-                    app:tint="#FFFFFF" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="Home"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/navItem"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@android:drawable/ic_menu_manage"
-                    app:tint="#FFFFFF" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="Item"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/navBranch"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@android:drawable/ic_menu_mapmode"
-                    app:tint="#FFFFFF" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="Branch"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/navLogout"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@android:drawable/ic_menu_revert"
-                    app:tint="#FFFFFF" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="Logout"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-<!--        <RelativeLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="60dp"-->
-<!--            android:background="@color/green_start"-->
-<!--            android:paddingHorizontal="16dp">-->
-
-<!--        <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:text="Chi!Matcha"-->
-<!--                android:textColor="#FFFFFF"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textStyle="bold" />-->
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/btnMenu"-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:background="?attr/selectableItemBackgroundBorderless"-->
-<!--                android:src="@android:drawable/ic_menu_sort_by_size"-->
-<!--                app:tint="#FFFFFF" />-->
-<!--        </RelativeLayout>-->
+            <ImageButton
+                android:id="@+id/btnMenuBranch"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                app:tint="#FFFFFF" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tvGreeting"
@@ -199,14 +88,17 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp">
 
-            <ImageView
+            <ImageButton
+                android:id="@+id/itema"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/img_carousel_items" /> <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#66000000" />
+                android:background="@null" android:scaleType="centerCrop"
+                android:src="@drawable/img_carousel_items" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#66000000" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -225,14 +117,17 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="32dp">
 
-            <ImageView
+            <ImageButton
+                android:id="@+id/cabanga"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/img_carousel_branches" /> <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#66000000" />
+                android:background="@null" android:scaleType="centerCrop"
+                android:src="@drawable/img_carousel_branches" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#66000000" />
 
             <TextView
                 android:layout_width="wrap_content"

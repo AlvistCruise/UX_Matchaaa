@@ -3,10 +3,13 @@ package com.example.ux_matchaaa;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,57 +21,72 @@ public class ItemActivity extends AppCompatActivity {
 
     private RecyclerView rvMatchaItems;
 
-    // Data Produk Simulasi
     private final String[] matchaNames = {
             "ChiMatcha Latte", "Mint Matcha Latte", "Strawberry Matcha", "Matcha Latte Cream"
     };
     private final String[] matchaPrices = {
             "Rp. 24.000", "Rp. 24.000", "Rp. 24.000", "Rp. 24.000"
     };
-    // Ganti ini dengan ID resource gambar asli milikmu
     private final int[] matchaImages = {
-            R.drawable.img_matcha_1, // Placeholder 1
-            R.drawable.img_matcha_2, // Placeholder 2
-            R.drawable.img_matcha_3, // Placeholder 3
-            R.drawable.img_matcha_4  // Placeholder 4
+            R.drawable.img_matcha_1,
+            R.drawable.img_matcha_2,
+            R.drawable.img_matcha_3,
+            R.drawable.img_matcha_4
     };
+    private ImageButton btnMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
 
-        // --- Konfigurasi Navigasi Header ---
-        LinearLayout navHome = findViewById(R.id.navHome);
-        LinearLayout navBranch = findViewById(R.id.navBranch);
-        LinearLayout navLogout = findViewById(R.id.navLogout);
-
-        navHome.setOnClickListener(v -> {
-            // Kembali ke Home
-            finish();
+        btnMenuItem = findViewById(R.id.btnMenuBranch);
+        btnMenuItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMenu(v);
+            }
         });
 
-         navBranch.setOnClickListener(v -> {
-             startActivity(new Intent(ItemActivity.this, BranchActivity.class));
-             finish(); // Tutup halaman Item agar tumpukan activity tidak menumpuk
-         });
-
-        navLogout.setOnClickListener(v -> {
-            Intent intent = new Intent(ItemActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-        });
-
-        // --- Konfigurasi RecyclerView Grid ---
         rvMatchaItems = findViewById(R.id.rvMatchaItems);
         MatchaGridAdapter adapter = new MatchaGridAdapter();
         rvMatchaItems.setAdapter(adapter);
     }
+    private void showMenu(View anchorView) {
+        PopupMenu popupMenu = new PopupMenu(ItemActivity.this, anchorView);
+        popupMenu.getMenuInflater().inflate(R.menu.dropdown_menu, popupMenu.getMenu());
 
-    // =========================================================
-    // INNER CLASS: Adapter untuk RecyclerView (Format Grid Kartu)
-    // =========================================================
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.menu_home) {
+                    Intent intent = new Intent(ItemActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+
+                } else if (id == R.id.menu_item) {
+
+                } else if (id == R.id.menu_branch) {
+                    Intent intent = new Intent(ItemActivity.this, BranchActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id == R.id.menu_logout) {
+                    // Logout ke Login Page
+                    Intent intent = new Intent(ItemActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
+    }
+
     private class MatchaGridAdapter extends RecyclerView.Adapter<MatchaGridAdapter.MatchaViewHolder> {
 
         @NonNull
@@ -84,11 +102,7 @@ public class ItemActivity extends AppCompatActivity {
             holder.tvPrice.setText(matchaPrices[position]);
             holder.ivImage.setImageResource(matchaImages[position]);
 
-            // Deteksi ketika kartu diklik (Akan mengarah ke Item Detail Page) [cite: 123]
             holder.itemView.setOnClickListener(v -> {
-//                Toast.makeText(ItemActivity.this, "Clicked: " + matchaNames[position], Toast.LENGTH_SHORT).show();
-
-
                 Intent intent = new Intent(ItemActivity.this, ItemDetailActivity.class);
                 intent.putExtra("ITEM_NAME", matchaNames[position]);
                 intent.putExtra("ITEM_PRICE", matchaPrices[position]);

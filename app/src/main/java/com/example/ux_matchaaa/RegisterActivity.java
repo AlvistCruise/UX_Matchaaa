@@ -27,7 +27,6 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
         tvBackToLogin = findViewById(R.id.tvBackToLogin);
 
-        // Logika Button Register
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +34,6 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = etRegPassword.getText().toString().trim();
                 String confirmPassword = etRegConfirmPassword.getText().toString().trim();
 
-                // Validasi harus diisi
                 if (username.isEmpty()) {
                     etRegUsername.setError("Username must be filled");
                     return;
@@ -49,34 +47,24 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Validasi panjang username
                 if (username.length() <= 6) {
                     etRegUsername.setError("Username length must be greater than 6");
                     return;
                 }
-
-                // Validasi kesamaan password
                 if (!password.equals(confirmPassword)) {
                     etRegConfirmPassword.setError("Password and Confirm Password must be the same");
                     return;
                 }
-
-                // Jika semua validasi lolos
                 MainActivity.globalUsername = username; // Simpan ke variabel global [cite: 97]
                 Toast.makeText(RegisterActivity.this, "Registration Success!", Toast.LENGTH_SHORT).show();
+                finish();
 
-                // Nanti kita buka comment ini kalau HomeActivity sudah dibuat
-                // Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                // startActivity(intent);
-                // finish();
             }
         });
 
-        // Logika kembali ke halaman Login
         tvBackToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Karena kita datang dari Login, kita bisa langsung 'finish' activity ini
                 finish();
             }
         });

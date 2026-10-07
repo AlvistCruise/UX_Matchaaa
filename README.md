@@ -12,7 +12,7 @@ A native Android application for browsing and ordering matcha products, built in
 
 ## Short Description
 
-**UX_Matchaaa** is a native Android mobile app that delivers a polished matcha catalog and ordering experience. The project focuses on faithfully translating a detailed Figma design into production-ready UI while applying Object-Oriented Programming (OOP) principles for maintainable, well-structured code.
+**UX_Matchaaa** is a native Android application built for browsing and ordering matcha products. This project demonstrates how to translate complex Figma mockups into modular, production-ready Android UI components using Java.
 
 ---
 
@@ -20,10 +20,10 @@ A native Android application for browsing and ordering matcha products, built in
 
 - **Modular UI Components** — Reusable layout components (such as `item_branch_card.xml` and `item_matcha_card.xml`) that keep screens consistent and easy to extend.
 - **Pixel-Faithful Figma Translation** — Complex Figma mockups converted into accurate Android layouts, including custom fonts, gradients, and themed card styling.
-- **Optimized Catalog Workflow** — A streamlined browsing-to-detail flow that improved the catalog navigation process by roughly **25%**, reducing friction between discovery and selection.
+- **Optimized Catalog Workflow** — A streamlined browsing-to-detail flow that improved the catalog navigation process by roughly **25%**, making it faster and easier for users to browse and select products.
 - **Multi-Screen User Journey** — Full flow across onboarding, registration, home, branch selection, product catalog, and product detail screens.
 - **Order Confirmation Experience** — A dedicated payment success dialog that gives users clear, satisfying feedback at checkout.
-- **Clean, OOP-Driven Codebase** — Activities and components organized around clear responsibilities for readability and scalability.
+- **Clean, OOP-Driven Codebase** — Code is structured to separate UI rendering from business logic, ensuring the codebase remains readable and easy to scale.
 
 ---
 

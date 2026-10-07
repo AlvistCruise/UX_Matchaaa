@@ -57,19 +57,19 @@ The project is built around **Object-Oriented Programming (OOP)** and **Clean Co
 
 | Onboarding / Main | Register |
 | :---: | :---: |
-| ![Main Screen]() | ![Register Screen]() |
+| ![Main Screen](Screenshots_of_MatchaAPP/Landingpage.jpg) | ![Register Screen](Screenshots_of_MatchaAPP/Registerpage.jpg) |
 
 | Home | Branch Selection |
 | :---: | :---: |
-| ![Home Screen]() | ![Branch Screen]() |
+| ![Home Screen](Screenshots_of_MatchaAPP/HomePage.jpg) | ![Branch Screen](Screenshots_of_MatchaAPP/BranchPage.jpg) |
 
 | Catalog (Items) | Item Detail |
 | :---: | :---: |
-| ![Item Catalog]() | ![Item Detail]() |
+| ![Item Catalog](Screenshots_of_MatchaAPP/ItemPage.jpg) | ![Item Detail](Screenshots_of_MatchaAPP/itemdetailpage.jpg) |
 
 **App Demo**
 
-![App Demo GIF]()
+![App Demo GIF](Screenshots_of_MatchaAPP/DemoGif.jpg)
 
 ---
 

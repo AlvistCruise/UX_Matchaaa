@@ -53,23 +53,41 @@ The project is built around **Object-Oriented Programming (OOP)** and **Clean Co
 
 ## UI/UX Showcase
 
-> Screenshots and demo GIFs of the application. Drop your images into the placeholders below.
+A screen-by-screen comparison of the application, straight from the live build. HTML `<img>` tags with a fixed `width='250'` are used so the previews stay compact and aligned instead of rendering at full size.
 
-| Onboarding / Main | Register |
-| :---: | :---: |
-| ![Main Screen](Screenshots_of_MatchaAPP/Landingpage.jpg) | ![Register Screen](Screenshots_of_MatchaAPP/Registerpage.jpg) |
+<table>
+  <tr>
+    <th align="center">Landing / Main</th>
+    <th align="center">Register</th>
+    <th align="center">Home</th>
+  </tr>
+  <tr>
+    <td align="center"><img src='Screenshots_of_MatchaAPP/Landingpage.jpg' width='250'></td>
+    <td align="center"><img src='Screenshots_of_MatchaAPP/Registerpage.jpg' width='250'></td>
+    <td align="center"><img src='Screenshots_of_MatchaAPP/HomePage.jpg' width='250'></td>
+  </tr>
+  <tr>
+    <th align="center">Branch Selection</th>
+    <th align="center">Catalog (Items)</th>
+    <th align="center">Item Detail</th>
+  </tr>
+  <tr>
+    <td align="center"><img src='Screenshots_of_MatchaAPP/BranchPage.jpg' width='250'></td>
+    <td align="center"><img src='Screenshots_of_MatchaAPP/ItemPage.jpg' width='250'></td>
+    <td align="center"><img src='Screenshots_of_MatchaAPP/itemdetailpage.jpg' width='250'></td>
+  </tr>
+</table>
 
-| Home | Branch Selection |
-| :---: | :---: |
-| ![Home Screen](Screenshots_of_MatchaAPP/HomePage.jpg) | ![Branch Screen](Screenshots_of_MatchaAPP/BranchPage.jpg) |
+### Live Demo
 
-| Catalog (Items) | Item Detail |
-| :---: | :---: |
-| ![Item Catalog](Screenshots_of_MatchaAPP/ItemPage.jpg) | ![Item Detail](Screenshots_of_MatchaAPP/itemdetailpage.jpg) |
-
-**App Demo**
-
-![App Demo GIF](Screenshots_of_MatchaAPP/DemoGif.jpg)
+<table>
+  <tr>
+    <th align="center">End-to-End App Walkthrough</th>
+  </tr>
+  <tr>
+    <td align="center"><img src='Screenshots_of_MatchaAPP/DemoGif.gif' width='250'></td>
+  </tr>
+</table>
 
 ---
 
